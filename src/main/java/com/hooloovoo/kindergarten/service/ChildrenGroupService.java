@@ -30,15 +30,16 @@ public class ChildrenGroupService {
         return childrenGroupRepository.save(childrenGroup);
     }
 
-    @Transactional
+    //@Transactional
     public ChildrenGroup saveChildrenGroup(ChildrenGroup childrenGroup) {
         Assert.notNull(childrenGroup, "childrenGroup can not be null");
         for(Child child : childrenGroup.getChildren()) {
             child.setGroup(childrenGroup); // mora da se cuva na owning strani
-            childRepository.save(child);
+            childRepository.save(child); //zbog @ManyToOne(cascade = CascadeType.ALL) grupa ce da se sacuva istovremeno kad i child
         }
 
-        return childrenGroupRepository.save(childrenGroup);
+        return childrenGroup;
+
         //todo: invalidate cache, look into um2 service implementation
     }
 }

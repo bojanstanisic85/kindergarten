@@ -10,6 +10,10 @@ import java.util.Set;
 @Entity
 @Table(name = "CHILD")
 public class Child {
+
+    public Child() {
+
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -19,13 +23,21 @@ public class Child {
     private String name;
     private String surname;
 
-    @ManyToOne
+    public Child(Long id, int age, LocalDateTime joinedAt, String name, String surname) {
+        this.id = id;
+        this.age = age;
+        this.joinedAt = joinedAt;
+        this.name = name;
+        this.surname = surname;
+    }
+
+    @ManyToOne(cascade=CascadeType.ALL) //provjeri MERGE sta radi
     @JoinColumn(name = "parent_id")
     private Parent parent;
 
     @JsonIgnore
     //@ManyToOne(cascade = CascadeType.ALL) - moze i bez transakcije ako se stavi ovo, i bez @JsonIgnore takodje
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "group_id")
     private ChildrenGroup group;
 

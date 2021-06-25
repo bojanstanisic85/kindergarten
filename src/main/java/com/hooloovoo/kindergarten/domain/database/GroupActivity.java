@@ -7,6 +7,9 @@ import java.util.Set;
 @Entity
 @Table(name = "GROUP_ACTIVITY")
 public class GroupActivity {
+
+    //todo dodati datum
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;

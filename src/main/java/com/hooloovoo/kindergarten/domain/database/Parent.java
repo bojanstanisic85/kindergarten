@@ -1,11 +1,17 @@
 package com.hooloovoo.kindergarten.domain.database;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name="PARENT")
 public class Parent {
+
+    public Parent() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -14,6 +20,7 @@ public class Parent {
     private String contact;
     private String address;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "parent")
     private Set<Child> children;
 
