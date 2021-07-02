@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/childrenGroup")
-public class ChildredGroupController {
+public class ChildrenGroupController {
     private final ChildrenGroupService childrenGroupService;
 
 
-    public ChildredGroupController(ChildrenGroupService childrenGroupService) {
+    public ChildrenGroupController(ChildrenGroupService childrenGroupService) {
         this.childrenGroupService = childrenGroupService;
     }
 
@@ -20,4 +20,7 @@ public class ChildredGroupController {
     public ChildrenGroup saveChildrenGroup(@RequestBody ChildrenGroup childrenGroup){
         return childrenGroupService.saveChildrenGroup(childrenGroup);
     }
+
+    //TODO get za svu djecu
+    //TODO istesitrati da li radi kreiranje childredGrupa za svu djecu koja  se proslijede sa FE-a
 }
